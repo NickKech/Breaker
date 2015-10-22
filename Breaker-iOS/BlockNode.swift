@@ -70,6 +70,7 @@ class BlockNode: SKNode {
         if toughness > 0 {
             /* 2 */
             let crack = SKSpriteNode(texture: SKTexture(imageNamed: "Crack"))
+            crack.zPosition = 3
             crack.name = "Crack"
             image.addChild(crack)
         } else {

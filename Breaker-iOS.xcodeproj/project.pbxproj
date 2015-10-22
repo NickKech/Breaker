@@ -12,20 +12,20 @@
 		9D524B361B9CB76200E59FA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B341B9CB76200E59FA7 /* Main.storyboard */; };
 		9D524B381B9CB76200E59FA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B371B9CB76200E59FA7 /* Assets.xcassets */; };
 		9D524B3B1B9CB76200E59FA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B391B9CB76200E59FA7 /* LaunchScreen.storyboard */; };
-		9D524B431B9CB8F200E59FA7 /* LabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D524B421B9CB8F200E59FA7 /* LabelNode.swift */; settings = {ASSET_TAGS = (); }; };
-		9D524B4A1B9CB96000E59FA7 /* Level1.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B451B9CB96000E59FA7 /* Level1.json */; settings = {ASSET_TAGS = (); }; };
-		9D524B4B1B9CB96000E59FA7 /* Level2.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B461B9CB96000E59FA7 /* Level2.json */; settings = {ASSET_TAGS = (); }; };
-		9D524B4C1B9CB96000E59FA7 /* Level3.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B471B9CB96000E59FA7 /* Level3.json */; settings = {ASSET_TAGS = (); }; };
-		9D524B4D1B9CB96000E59FA7 /* Level4.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B481B9CB96000E59FA7 /* Level4.json */; settings = {ASSET_TAGS = (); }; };
-		9D524B4E1B9CB96000E59FA7 /* Level5.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B491B9CB96000E59FA7 /* Level5.json */; settings = {ASSET_TAGS = (); }; };
-		9D524B541B9CB97800E59FA7 /* Block.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B501B9CB97800E59FA7 /* Block.m4a */; settings = {ASSET_TAGS = (); }; };
-		9D524B551B9CB97800E59FA7 /* LevelDone.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B511B9CB97800E59FA7 /* LevelDone.m4a */; settings = {ASSET_TAGS = (); }; };
-		9D524B561B9CB97800E59FA7 /* LostLife.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B521B9CB97800E59FA7 /* LostLife.m4a */; settings = {ASSET_TAGS = (); }; };
-		9D524B571B9CB97800E59FA7 /* Message.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B531B9CB97800E59FA7 /* Message.m4a */; settings = {ASSET_TAGS = (); }; };
-		9D524B591B9CB98600E59FA7 /* PaddleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D524B581B9CB98600E59FA7 /* PaddleNode.swift */; settings = {ASSET_TAGS = (); }; };
-		9D524B5B1B9CB99000E59FA7 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D524B5A1B9CB99000E59FA7 /* Enumerations.swift */; settings = {ASSET_TAGS = (); }; };
-		9D524B5D1B9CB99800E59FA7 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D524B5C1B9CB99800E59FA7 /* BlockNode.swift */; settings = {ASSET_TAGS = (); }; };
-		9D524B5F1B9CB9B800E59FA7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D524B5E1B9CB9B800E59FA7 /* GameScene.swift */; settings = {ASSET_TAGS = (); }; };
+		9D524B431B9CB8F200E59FA7 /* LabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D524B421B9CB8F200E59FA7 /* LabelNode.swift */; };
+		9D524B4A1B9CB96000E59FA7 /* Level1.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B451B9CB96000E59FA7 /* Level1.json */; };
+		9D524B4B1B9CB96000E59FA7 /* Level2.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B461B9CB96000E59FA7 /* Level2.json */; };
+		9D524B4C1B9CB96000E59FA7 /* Level3.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B471B9CB96000E59FA7 /* Level3.json */; };
+		9D524B4D1B9CB96000E59FA7 /* Level4.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B481B9CB96000E59FA7 /* Level4.json */; };
+		9D524B4E1B9CB96000E59FA7 /* Level5.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B491B9CB96000E59FA7 /* Level5.json */; };
+		9D524B541B9CB97800E59FA7 /* Block.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B501B9CB97800E59FA7 /* Block.m4a */; };
+		9D524B551B9CB97800E59FA7 /* LevelDone.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B511B9CB97800E59FA7 /* LevelDone.m4a */; };
+		9D524B561B9CB97800E59FA7 /* LostLife.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B521B9CB97800E59FA7 /* LostLife.m4a */; };
+		9D524B571B9CB97800E59FA7 /* Message.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9D524B531B9CB97800E59FA7 /* Message.m4a */; };
+		9D524B591B9CB98600E59FA7 /* PaddleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D524B581B9CB98600E59FA7 /* PaddleNode.swift */; };
+		9D524B5B1B9CB99000E59FA7 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D524B5A1B9CB99000E59FA7 /* Enumerations.swift */; };
+		9D524B5D1B9CB99800E59FA7 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D524B5C1B9CB99800E59FA7 /* BlockNode.swift */; };
+		9D524B5F1B9CB9B800E59FA7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D524B5E1B9CB9B800E59FA7 /* GameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,9 +87,9 @@
 				9D524B421B9CB8F200E59FA7 /* LabelNode.swift */,
 				9D524B581B9CB98600E59FA7 /* PaddleNode.swift */,
 				9D524B2C1B9CB76200E59FA7 /* AppDelegate.swift */,
-				9D524B5A1B9CB99000E59FA7 /* Enumerations.swift */,
 				9D524B5E1B9CB9B800E59FA7 /* GameScene.swift */,
 				9D524B5C1B9CB99800E59FA7 /* BlockNode.swift */,
+				9D524B5A1B9CB99000E59FA7 /* Enumerations.swift */,
 				9D524B321B9CB76200E59FA7 /* GameViewController.swift */,
 				9D524B341B9CB76200E59FA7 /* Main.storyboard */,
 				9D524B371B9CB76200E59FA7 /* Assets.xcassets */,
@@ -359,6 +359,7 @@
 				9D524B411B9CB76200E59FA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
