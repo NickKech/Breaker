@@ -27,28 +27,28 @@ class LabelNode: SKNode {
         }
     }
     
-    var fontColor: SKColor = SKColor.whiteColor() {
+    var fontColor: SKColor = SKColor.white {
         didSet {
             label.fontColor = fontColor
         }
         
     }
     
-    var shadowColor: SKColor = SKColor.blackColor() {
+    var shadowColor: SKColor = SKColor.black {
         didSet {
             shadow.fontColor = shadowColor
         }
     }
     
     
-    var verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center {
+    var verticalAlignmentMode = SKLabelVerticalAlignmentMode.center {
         didSet {
             label.verticalAlignmentMode = verticalAlignmentMode
             shadow.verticalAlignmentMode = verticalAlignmentMode
         }
     }
     
-    var horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center {
+    var horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center {
         didSet {
             label.horizontalAlignmentMode = horizontalAlignmentMode
             shadow.horizontalAlignmentMode = horizontalAlignmentMode
@@ -70,7 +70,7 @@ class LabelNode: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addLabel(fontNamed: String) {
+    func addLabel(_ fontNamed: String) {
         label = SKLabelNode(fontNamed: fontNamed)
         label.fontColor = fontColor
         label.zPosition = 1
@@ -78,7 +78,7 @@ class LabelNode: SKNode {
         addChild(label)
     }
     
-    func addShadow(fontNamed: String) {
+    func addShadow(_ fontNamed: String) {
         shadow = SKLabelNode(fontNamed: fontNamed)
         shadow.fontColor = shadowColor
         shadow.zPosition = 0

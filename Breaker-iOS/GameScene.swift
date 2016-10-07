@@ -67,7 +67,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         /* Add Background */
         addBackground()
         
@@ -115,7 +115,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     
     
-    func addOneBlock(row: Int, column: Int, filename: String, toughness: Int) {
+    func addOneBlock(_ row: Int, column: Int, filename: String, toughness: Int) {
         let margin: CGFloat = 28 // Defines the space between the edge of the screen and the blocks array
         let offset: CGFloat = 2  // Defines the space between the blocks
         let width: CGFloat = 100 // Defines the width of the block
@@ -127,27 +127,21 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         /* 2 */
         let block = BlockNode(texture: SKTexture(imageNamed: filename), toughness: toughness)
-        block.zPosition = zOrderValue.Block.rawValue
+        block.zPosition = zOrderValue.block.rawValue
         block.name = "Block"
         block.position = CGPoint(x: xPos, y: yPos)
         addChild(block)
     }
 
     
-    
-    
-    
-    
-    
-    
-    func loadLevelFromFile(filename: String) -> [[Int]] {
+    func loadLevelFromFile(_ filename: String) -> [[Int]] {
         /* 1 */
-        let path = NSBundle.mainBundle().pathForResource(filename, ofType: nil)
+        let path = Bundle.main.path(forResource: filename, ofType: nil)
         
         /* 2 */
-        var data: NSData!
+        var data: Data!
         do {
-            data = try NSData(contentsOfFile: path!, options: NSDataReadingOptions())
+            data = try Data(contentsOf: URL(fileURLWithPath: path!), options: Data.ReadingOptions())
         } catch {
             print("Error: Invalid file")
         }
@@ -156,7 +150,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         var dictionary: NSDictionary!
         do {
-            dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as! NSDictionary
+            dictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as! NSDictionary
         } catch {
             print("Error: Invalid file format")
         }
@@ -205,9 +199,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         addChild(spikes)
         
         /* 2 */
-        spikes.physicsBody = SKPhysicsBody(rectangleOfSize: spikes.size)
-        spikes.physicsBody!.dynamic = false
-        spikes.physicsBody!.categoryBitMask = ColliderCategory.Spikes.rawValue
+        spikes.physicsBody = SKPhysicsBody(rectangleOf: spikes.size)
+        spikes.physicsBody?.isDynamic = false
+        spikes.physicsBody?.categoryBitMask = ColliderCategory.spikes.rawValue
     }
 
     
@@ -216,26 +210,26 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         let ball = SKSpriteNode(texture: SKTexture(imageNamed: "Ball"))
         ball.name = "Ball"
         ball.position = CGPoint(x: size.width / 2, y: paddleOnY + ball.size.height / 2)
-        ball.zPosition = zOrderValue.Ball.rawValue
+        ball.zPosition = zOrderValue.ball.rawValue
         addChild(ball)
         
         /* 2 */
         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2)
         /* 3 */
-        ball.physicsBody!.friction = 0.0
+        ball.physicsBody?.friction = 0.0
         /* 4 */
-        ball.physicsBody!.restitution = 1.0
+        ball.physicsBody?.restitution = 1.0
         /* 5 */
-        ball.physicsBody!.allowsRotation = false
+        ball.physicsBody?.allowsRotation = false
         /* 6 */
-        ball.physicsBody!.linearDamping = 0.0
+        ball.physicsBody?.linearDamping = 0.0
         
         /* 7 */
-        ball.physicsBody!.categoryBitMask = ColliderCategory.Ball.rawValue
+        ball.physicsBody?.categoryBitMask = ColliderCategory.ball.rawValue
         /* 8 */
-        ball.physicsBody!.collisionBitMask = ColliderCategory.Block.rawValue | ColliderCategory.Paddle.rawValue | ColliderCategory.Spikes.rawValue | ColliderCategory.Border.rawValue
+        ball.physicsBody?.collisionBitMask = ColliderCategory.block.rawValue | ColliderCategory.paddle.rawValue | ColliderCategory.spikes.rawValue | ColliderCategory.border.rawValue
         /* 9 */
-        ball.physicsBody!.contactTestBitMask = ColliderCategory.Spikes.rawValue | ColliderCategory.Block.rawValue
+        ball.physicsBody?.contactTestBitMask = ColliderCategory.spikes.rawValue | ColliderCategory.block.rawValue
     }
 
     
@@ -252,37 +246,37 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     func initPhysicsWorld() {
         /* 1 */
-        physicsWorld.gravity = CGVectorMake(0, 0)
+        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
         /* Enable Contacts notifications */
         physicsWorld.contactDelegate = self
         
         /* 2 */
-        physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
         /* 3 */
-        physicsBody!.friction = 0.0
+        physicsBody?.friction = 0.0
         
         /* 4 */
-        physicsBody!.categoryBitMask = ColliderCategory.Border.rawValue
+        physicsBody?.categoryBitMask = ColliderCategory.border.rawValue
     }
     
-    func didBeginContact(contact: SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) {
         /* 1 */
         let categoryA = contact.bodyA.categoryBitMask;
         let categoryB = contact.bodyB.categoryBitMask;
         
         /* 2 */
-        if categoryA == ColliderCategory.Ball.rawValue && categoryB == ColliderCategory.Block.rawValue {
+        if categoryA == ColliderCategory.ball.rawValue && categoryB == ColliderCategory.block.rawValue {
             let block = contact.bodyB.node as! BlockNode
             contactBallWithBlock(block)
-        } else if categoryB == ColliderCategory.Ball.rawValue && categoryA == ColliderCategory.Block.rawValue {
+        } else if categoryB == ColliderCategory.ball.rawValue && categoryA == ColliderCategory.block.rawValue {
             let block = contact.bodyA.node as! BlockNode
             contactBallWithBlock(block)
-        } else if categoryA == ColliderCategory.Ball.rawValue && categoryB == ColliderCategory.Spikes.rawValue {
+        } else if categoryA == ColliderCategory.ball.rawValue && categoryB == ColliderCategory.spikes.rawValue {
             /* Contact Ball With Spikes A */
             contactBallWithSpikes(contact.bodyA.node as! SKSpriteNode)
-        } else if categoryB == ColliderCategory.Ball.rawValue && categoryA == ColliderCategory.Spikes.rawValue {
+        } else if categoryB == ColliderCategory.ball.rawValue && categoryA == ColliderCategory.spikes.rawValue {
             /* Contact Ball With Spikes B */
             contactBallWithSpikes(contact.bodyB.node as! SKSpriteNode)
         }
@@ -291,9 +285,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         checkIfLevelCompleted()
     }
     
-    func contactBallWithBlock(block: BlockNode) {
+    func contactBallWithBlock(_ block: BlockNode) {
         /* 1 */
-        runAction(soundBlock)
+        run(soundBlock)
         block.gotHit()
         /* Update Score */
         updateScore()
@@ -306,10 +300,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     func checkIfLevelCompleted() {
         /* 1 */
-        let brick = childNodeWithName("Block")
+        let brick = childNode(withName: "Block")
         if brick == nil {
             /* 2 */
-            runAction(soundLevelDone)
+            run(soundLevelDone)
             /* 3 */
             showMessage("LevelCompleted")
             /* 4 */
@@ -322,8 +316,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         /* 1 */
         let time = abs(paddle.position.x - size.width * 0.50) / 200
         /* 2 */
-        let move = SKAction.moveTo(CGPoint(x: size.width / 2, y: paddleOnY), duration: NSTimeInterval(time))
-        paddle.runAction(move, completion: {
+        let move = SKAction.move(to: CGPoint(x: size.width / 2, y: paddleOnY), duration: TimeInterval(time))
+        paddle.run(move, completion: {
             /* 3 */
             self.isBallMoving = false
             /* 4 */
@@ -331,28 +325,28 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         })
     }
 
-    func showMessage(imageNamed: String) {
+    func showMessage(_ imageNamed: String) {
         /* 1 */
         let panel = SKSpriteNode(texture: SKTexture(imageNamed: imageNamed))
         panel.name = imageNamed
-        panel.zPosition = zOrderValue.Message.rawValue
+        panel.zPosition = zOrderValue.message.rawValue
         panel.position = CGPoint(x: size.width / 2, y: -size.height)
         addChild(panel)
         
         /* 2 */
-        let move = SKAction.moveTo(CGPointMake(size.width / 2, size.height / 2), duration: 0.5)
-        panel.runAction(SKAction.sequence([soundMessage, move]))
+        let move = SKAction.move(to: CGPoint(x: size.width / 2, y: size.height / 2), duration: 0.5)
+        panel.run(SKAction.sequence([soundMessage, move]))
     }
 
     
-    func contactBallWithSpikes(ball: SKSpriteNode) {
+    func contactBallWithSpikes(_ ball: SKSpriteNode) {
         /* 1 */
-        runAction(soundLost)
+        run(soundLost)
         /* 2 */
         ball.removeFromParent()
         /* 3 */
         if lives > 0 {
-            lives--
+            lives -= 1
             nextBall()
         } else {
             showMessage("GameOver")
@@ -363,8 +357,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     func addBackground() {
         let background = SKSpriteNode(imageNamed: "Background")
         background.name = "Background"
-        background.zPosition = zOrderValue.Background.rawValue
-        background.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame))
+        background.zPosition = zOrderValue.background.rawValue
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
         addChild(background)
     }
 
@@ -397,7 +391,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         /* 2 */
         if level < totalLevels {
-            level++
+            level += 1
         }
         
         /* 3 */
@@ -412,46 +406,44 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     func shootBall() {
         if !isBallMoving && !isPaddleMoving {
             isBallMoving = true
-            let ball = childNodeWithName("Ball") as! SKSpriteNode
-            ball.physicsBody!.velocity = CGVectorMake(450.0, -450.0)
+            let ball = childNode(withName: "Ball") as! SKSpriteNode
+            ball.physicsBody?.velocity = CGVector(dx: 450.0, dy: -450.0)
         }
     }
     
-    func ballFollowsPaddle(position: CGFloat) {
+    func ballFollowsPaddle(_ position: CGFloat) {
         if !isBallMoving {
-            let ball = childNodeWithName("Ball") as! SKSpriteNode
+            let ball = childNode(withName: "Ball") as! SKSpriteNode
             ball.position = CGPoint(x: position, y: ball.position.y)
         }
     }
 
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
     }
     
     
    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let location = touches.first?.locationInNode(self)
-        let node = nodeAtPoint(location!)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let location = touches.first?.location(in: self)
+        let node = atPoint(location!)
         
         /* Start New Game */
-        let gameOver = childNodeWithName("GameOver")
+        let gameOver = childNode(withName: "GameOver")
         if gameOver != nil {
             newGame()
             return
         }
         
         /* Load Next Level */
-        let nextLevel = childNodeWithName("LevelCompleted")
+        let nextLevel = childNode(withName: "LevelCompleted")
         if nextLevel != nil {
             loadNextLevel()
             return
         }
         
         /* 2 */
-        print("mouseDown")
         if node.name == "Paddle" {
-            print("mouseDragged: Paddle")
             isPaddleMoving = true
         } else {
             shootBall()
@@ -459,12 +451,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
 
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         isPaddleMoving = false
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let location = touches.first?.locationInNode(self)
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let location = touches.first?.location(in: self)
         if isPaddleMoving {
             /* 2 */
             var paddleX = location!.x

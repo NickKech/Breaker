@@ -46,18 +46,18 @@ class PaddleNode: SKNode {
         addChild(image)
         
         /* 2 */
-        physicsBody = SKPhysicsBody(rectangleOfSize: image.size)
+        physicsBody = SKPhysicsBody(rectangleOf: image.size)
         /* 3 */
-        physicsBody!.dynamic = false
+        physicsBody?.isDynamic = false
         /* 4 */
-        physicsBody!.friction = 0.0
+        physicsBody?.friction = 0.0
         /* 5 */
-        physicsBody!.restitution = 1.0
+        physicsBody?.restitution = 1.0
         
         /* 6 */
-        physicsBody!.categoryBitMask = ColliderCategory.Paddle.rawValue
+        physicsBody?.categoryBitMask = ColliderCategory.paddle.rawValue
         /* 7 */
-        physicsBody!.collisionBitMask = ColliderCategory.Ball.rawValue
+        physicsBody?.collisionBitMask = ColliderCategory.ball.rawValue
 
     }
     
